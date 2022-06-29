@@ -81,6 +81,18 @@ void Game::Render() const
 		bricks[i].Draw();
 	}
 
+	if (bricks.size() == 0)
+	{
+		Console::SetCursorPosition(40, 10);
+
+		std::cout << "A WINNER IS YOU!! PRESS R TO PLAY AGAIN";
+	}
+	if (ball.y_position >= 40)
+	{
+		Console::SetCursorPosition(40, 10);
+
+		std::cout << "YOU LOSE!! PRESS R TO PLAY AGAIN  ";
+	}
 	Console::Lock(false);
 }
 
@@ -106,9 +118,6 @@ void Game::CheckCollision()
 	if (bricks.size() == 0)
 	{
 		ball.moving = false;
-		Console::SetCursorPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-		std::cout << "A WINNER IS YOU!! PRESS R TO PLAY AGAIN";
-
 
 	}
 
@@ -118,4 +127,9 @@ void Game::CheckCollision()
 	}
 
 	// TODO #7 - If ball touches bottom of window, pause ball and display defeat text with R to reset
+
+	if (ball.y_position >= 40)
+	{
+		ball.moving = false;
+	}
 }
